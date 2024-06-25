@@ -32,7 +32,7 @@ const NewList = () => {
         .filter((u) => !filter?.status || u.status === filter?.status)
         .filter((u) => !filter?.contract || u.contract === filter?.contract)
         .filter((u) => !filter?.availability || u.availability === filter?.availability)
-        .filter((u) => !filter?.search || u.name.toLowerCase().includes(filter?.search.toLowerCase())),
+        .filter((u) => !filter?.search || (u.name?.toLowerCase().includes(filter?.search.toLowerCase()) || u.job_title?.toLowerCase().includes(filter?.search.toLowerCase()))),
     );
   }, [users, filter]);
 
@@ -249,6 +249,9 @@ const UserCard = ({ hit, projects }) => {
         <div className="flex flex-col items-center text-center my-4 space-y-1">
           <p className="font-semibold text-lg">{hit.name}</p>
         </div>
+       { hit.job_title && <div className="flex flex-col items-center text-center my-4 space-y-1">
+          <p className="font-semibold text-lg">{hit.job_title}</p>
+        </div>}
       </div>
     </div>
   );
